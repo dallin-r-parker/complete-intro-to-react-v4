@@ -27,7 +27,7 @@ class App extends React.Component {
       getBreeds: this.getBreeds
     };
   }
-  handleCityStateChange = event => {
+  handleLocationChange = event => {
     this.setState({
       cityState: event.target.value
     });
@@ -74,26 +74,17 @@ class App extends React.Component {
       <div>
         <header>
           <Link to="/">Adopt Me!</Link>
+          <Link to="/search-params">
+            <span aria-label="search" role="img">
+
+            </span>
+          </Link>
         </header>
         <Provider value={this.state}>
           <Router>
-            <Results
-              path="/"
-              handleBreedChange={this.handleBreedChange}
-              handleAnimalChange={this.handleAnimalChange}
-              handleCityStateChange={this.handleCityStateChange}
-              getBreeds={this.getBreeds}
-              {...this.state}
-            />
+            <Results path="/" />
             <Details path="/details/:id" />
-            <SearchParams
-              path="/search-params"
-              handleBreedChange={this.handleBreedChange}
-              handleAnimalChange={this.handleAnimalChange}
-              handleCityStateChange={this.handleCityStateChange}
-              getBreeds={this.getBreeds}
-              {...this.state}
-            />
+            <SearchParams path="/search-params" />
           </Router>
         </Provider>
       </div>

@@ -13,12 +13,12 @@ class Search extends React.Component {
       <Consumer>
         {(context) => (
           <div className="search-params">
-            <form onSubmit={this.props.search}>
+            <form onSubmit={this.handleFormSubmit}>
               <label htmlFor="location">
                 Location
           <input
                   id="location"
-                  onChange={context.handleCityStateChange}
+                  onChange={context.handleLocationChange}
                   value={context.cityState}
                   placeholder="Location"
                 />
