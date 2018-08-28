@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Link } from "@reach/router";
 import pf from "petfinder-client";
+import { Provider } from './SearchContext';
 import Results from "./Results";
 import Details from "./Details";
 import SearchParams from "./SearchParams";
@@ -19,7 +20,11 @@ class App extends React.Component {
       cityState: "Seattle, WA",
       animal: "",
       breed: "",
-      breeds: []
+      breeds: [],
+      handleAnimalChange: this.handleAnimalChange,
+      handleBreedChange: this.handleBreedChange,
+      handleLocationChange: this.handleLocationChange,
+      getBreeds: this.getBreeds
     };
   }
   handleCityStateChange = event => {
@@ -70,25 +75,27 @@ class App extends React.Component {
         <header>
           <Link to="/">Adopt Me!</Link>
         </header>
-        <Router>
-          <Results
-            path="/"
-            handleBreedChange={this.handleBreedChange}
-            handleAnimalChange={this.handleAnimalChange}
-            handleCityStateChange={this.handleCityStateChange}
-            getBreeds={this.getBreeds}
-            {...this.state}
-          />
-          <Details path="/details/:id" />
-          <SearchParams
-            path="/search-params"
-            handleBreedChange={this.handleBreedChange}
-            handleAnimalChange={this.handleAnimalChange}
-            handleCityStateChange={this.handleCityStateChange}
-            getBreeds={this.getBreeds}
-            {...this.state}
-          />
-        </Router>
+        <Provider value={this.state}>
+          <Router>
+            <Results
+              path="/"
+              handleBreedChange={this.handleBreedChange}
+              handleAnimalChange={this.handleAnimalChange}
+              handleCityStateChange={this.handleCityStateChange}
+              getBreeds={this.getBreeds}
+              {...this.state}
+            />
+            <Details path="/details/:id" />
+            <SearchParams
+              path="/search-params"
+              handleBreedChange={this.handleBreedChange}
+              handleAnimalChange={this.handleAnimalChange}
+              handleCityStateChange={this.handleCityStateChange}
+              getBreeds={this.getBreeds}
+              {...this.state}
+            />
+          </Router>
+        </Provider>
       </div>
     );
   }
