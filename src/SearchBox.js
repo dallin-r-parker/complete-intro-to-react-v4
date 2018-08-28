@@ -12,8 +12,8 @@ class Search extends React.Component {
               Location
           <input
                 id="location"
-                onChange={this.props.handleCityStateChange}
-                value={this.props.cityState}
+                onChange={context.handleCityStateChange}
+                value={context.cityState}
                 placeholder="Location"
               />
             </label>
@@ -21,9 +21,9 @@ class Search extends React.Component {
               Animal
           <select
                 id="animal"
-                value={this.props.animal}
-                onChange={this.props.handleAnimalChange}
-                onBlur={this.props.handleAnimalChange}
+                value={context.animal}
+                onChange={context.handleAnimalChange}
+                onBlur={context.handleAnimalChange}
               >
                 <option />
                 {ANIMALS.map(animal => (
@@ -36,14 +36,14 @@ class Search extends React.Component {
             <label htmlFor="breed">
               Breed
           <select
-                disabled={!this.props.breeds.length}
+                disabled={!context.breeds.length}
                 id="breed"
-                value={this.props.breed}
-                onChange={this.props.handleBreedChange}
-                onBlur={this.props.handleBreedChange}
+                value={context.breed}
+                onChange={context.handleBreedChange}
+                onBlur={context.handleBreedChange}
               >
                 <option />
-                {this.props.breeds.map(breed => (
+                {context.breeds.map(breed => (
                   <option key={breed} value={breed}>
                     {breed}
                   </option>
